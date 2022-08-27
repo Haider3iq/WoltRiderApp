@@ -1,0 +1,68 @@
+<Modal
+animationType="fade"
+  transparent={false}
+  visible={!newTask?.id ? true : false} 
+  
+  // onRequestClose={() => setModal(it => !it)}
+  
+>
+  <ScrollView
+  style={{
+    width: "100%",
+    backgroundColor: customStyles.successColor,
+    height: "100%",
+    paddingTop: "15%",
+  }}
+  >
+    
+    <View
+    style={{
+      backgroundColor: customStyles.primaryColor,
+      paddingTop: "10%",
+      alignItems: "center",
+      paddingBottom: "30%",
+      
+      alignContent: "center",
+      marginBottom: "-10%",
+      borderRadius: 20,
+     
+    }}
+    >
+       <Text
+      style={styles.titleNoTask}
+      >
+        {"New Delivery"}
+      </Text>
+      
+    <Image
+    source={CustomerHouse}
+    style={{width: 100, height: 100, padding: "5%", backgroundColor: customStyles.white, borderRadius: 20,}}
+    />
+
+     
+    </View>
+    <View
+    style={{paddingHorizontal: "5%"}}
+    >
+     <RiderTask 
+details={null}
+    widgetColor={undefined}
+    widget1firstTitle={"newTask?.vendorName"}
+    widget1firstText={"newTask?.customerAddress"}
+    widget1firstIcon={"ios-location"}
+    widget1secondText={"newTask?.mustBePreparedAt"}
+    widget1secondIcon={"ios-checkmark-circle"}
+    widget1thridText={"newTask?.distance"}
+    widget1thridIcon={"ios-walk-outline"}
+
+    widget1firstButtonPress={() => navigation.navigate("support")}
+    mainButtonColor={"white"}
+    mainButtonIcon={"ios-checkmark-circle"}
+    mainButtonText={"Take task"}
+    onMainButtonPress={() => accept_task_request(rider?.id, newTask?.id)}
+    /> 
+    </View>
+
+  </ScrollView>
+  <StatusBar style={"light"}  backgroundColor={customStyles.successColor} />
+</Modal>

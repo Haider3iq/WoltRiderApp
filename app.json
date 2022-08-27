@@ -1,0 +1,34 @@
+{
+  "expo": {
+    "name": "Wolt",
+    "slug": "Wolt",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/steering-wheel.png",
+    "scheme": "myapp",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/images/steering-wheel3.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#6043D5"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/images/favicon.png"
+    }
+  }
+}

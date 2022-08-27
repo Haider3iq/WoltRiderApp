@@ -1,0 +1,624 @@
+const [panelIsUp, setPanelIsUp] = useState(false);
+    
+    const modalAnim = new Animated.Value(170);
+
+    const slideUpAnimation = () => {
+      Animated.spring(modalAnim, {
+        toValue: 0,
+        useNativeDriver: true,
+      }).start(() => setPanelIsUp(true));
+    }
+
+    const slideDownAnimation = () => {
+      Animated.spring(modalAnim, {
+        toValue: 170,
+        useNativeDriver: true,
+      }).start(() => setPanelIsUp(false));
+    }
+
+    const modalSliding = () => {
+      if(panelIsUp) {
+        slideDownAnimation()
+      } else if(panelIsUp === false) {
+        slideUpAnimation()
+      }
+    }
+
+
+
+
+
+
+
+
+
+
+
+    
+    useEffect(() => {
+      
+      const arr1 = [
+        "1", "2", "3", "4","1", "2", "3", "4","1", "2", "3", "4","1", "2", "3", "4",
+        "1", "2", "3", "4","1", "2", "3", "4","1", "2", "3", "4","1", "2", "3", "4",
+        "1", "2", "3", "4","1", "2", "3", "4","1", "2", "3", "4","1", "2", "3", "4",
+        "1", "2", "3", "4","1", "2", "3", "4","1", "2", "3", "4","1", "2", "3", "4",
+        "1", "2", "3", "4","1", "2", "3", "4","1", "2", "3", "4","1", "2", "3", "4",
+        "1", "2", "3", "4","1", "2", "3", "4","1", "2", "3", "4","1", "2", "3", "4",
+        "1", "2", "3", "4","1", "2", "3", "4","1", "2", "3", "4","1", "2", "3", "4",
+        "1", "2", "3", "4","1", "2", "3", "4","1", "2", "3", "4","1", "2", "3", "4",
+        "1", "2", "3", "4","1", "2", "3", "4","1", "2", "3", "4","1", "2", "3", "4",
+        "1", "2", "3", "4","1", "2", "3", "4","1", "2", "3", "4","1", "2", "3", "4",
+        "1", "2", "3", "4","1", "2", "3", "4","1", "2", "3", "4","1", "2", "3", "4",
+        "1", "2", "3", "4","1", "2", "3", "4","1", "2", "3", "4","1", "2", "3", "4",
+        "1", "2", "3", "4","1", "2", "3", "4","1", "2", "3", "4","1", "2", "3", "4",
+        "1", "2", "3", "4","1", "2", "3", "4","1", "2", "3", "4","1", "2", "3", "4",
+        ];
+      
+        const number = "2"
+        const start1 = Date.now();
+        console.log([number].concat(arr1))
+        console.log("concat array ",[number].concat(arr1))
+      
+        console.log("first function duration: ", Date.now() - start1,"ms" )
+      
+        const start2 = Date.now();
+        arr1.unshift(number)
+        console.log("unshift array ",arr1)
+        console.log("second function duration: ", Date.now() - start2,"ms" )
+      
+      
+      
+          }, [])
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    import { Ionicons, MaterialIcons } from "@expo/vector-icons";
+import Slider from "@react-native-community/slider";
+import React from "react";
+import { View, Text, TouchableOpacity, Dimensions} from "react-native";
+import EStyleSheet from "react-native-extended-stylesheet";
+import customStyles from "../AppTheme/customStyles";
+import {DangerZone} from "expo"
+
+
+export default function SliderButton ({online, onPress}) {
+
+    return (
+    <View
+    style={styles.container}
+    >
+      
+    </View>
+    )
+    
+}
+
+const entireScreenWidth = Dimensions.get('window').width;
+EStyleSheet.build({$rem: entireScreenWidth / 380});
+
+
+const styles = EStyleSheet.create({
+    container: {
+        width: entireScreenWidth / 5, 
+        height: entireScreenWidth / 5,
+        borderRadius: entireScreenWidth / 2,
+        backgroundColor: customStyles.secondPrimaryColor,
+    },
+
+
+    iconSize: {
+      fontSize: "30rem",
+      color: customStyles.secondPrimaryColor,
+      padding: "2.5%",
+    },
+
+    ButtonText: {
+      color: customStyles.white, 
+      fontSize: "20rem" ,
+      fontWeight: customStyles.fontWeight,
+    }, 
+
+    offlineButton: {
+        paddingVertical: "3%",
+        marginVertical: "3%",
+        padding: "2%",
+        borderRadius: "10rem",
+        minWidth: "90%",
+        alignItems: "center"
+    }
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //#111 accpet new task updating
+        useEffect(() => {
+          // console.log("socketref",socket)
+         const socket = socketIOClient(ENDPOINT);  
+    
+         socket.on("acceptNewTask", ({task}) => {
+              if(task.riderID === rider?.id && deliveries?.map((item) => item.id !== task.id)) {
+              console.log("new task added: ", task)
+              deliveries.push(task)
+              setNewTask({})
+              }
+             
+      
+            });
+    
+        },[])
+    
+    
+        //#222 skip new task updating
+        useEffect(() => {
+          
+         const socket = socketIOClient(ENDPOINT); 
+         socket.on("skipNewTask", ({task}) => {
+              if(task.pendingRider === rider?.id) {
+              console.log("new task skipped: ", task)
+              // deliveries.push(task)
+              setNewTask({})
+              }
+             
+      
+            });
+    
+        },[])
+    
+    
+        //#333 drop task updating
+        useEffect(() => {
+          
+          
+         const socket = socketIOClient(ENDPOINT); 
+         socket.on("dropDelivery", ({task}) => {
+            console.log("task from dropDelivery io: ", task.id)
+            console.log(deliveries?.map(object => object.id))
+            console.log("first deilvery: ", deliveries[0]?.id)
+    
+            // console.log("current delivery io: ", currentDelivery)
+              if(deliveries[0]?.id === task?.id || deliveries[1]?.id === task?.id 
+                || deliveries[2]?.id  === task?.id || deliveries[3]?.id === task?.id) {
+              console.log("Dropped the following delivery: ", task)
+              // setDeliveries(deliveries.filter(it => it.id !== task.id))
+              setDeliveries(deliveries.splice(deliveries.findIndex(item => item.id === task.id) , 1))
+              // setActive(active === "second" ? "first" : active === "first" ? "second" : "third")
+              setLastDelivery(task)
+              console.log("active: ", active)
+              
+              } 
+             
+            });
+    
+        },[])
+    
+        //#444 pick task updating
+        useEffect(() => {
+         const socket = socketIOClient(ENDPOINT); 
+         socket.on("pickDelivery", ({task}) => {
+            console.log("task: ", task)
+              if(task?.riderID === rider?.id) {
+              // var date = new Date().toISOString().slice(0, 19).replace('T', ' ');
+              // console.log("task has been picked up: ", task)
+              let data = deliveries
+              var foundIndex = deliveries?.findIndex(it => it.id == task.id);
+              data[foundIndex] = task;
+              console.log("deliveries ids",deliveries?.map(it => it.id))
+              // setDeliveries(deliveries.map(it => it.id !== task.id ? it : task))
+              setDeliveries(data)
+              setCurrentDelivery(task)
+              // setActive(active === "second" ? "first" : active === "first" ? "second" : "third")
+              // console.log("deliveries: ", deliveries, "active is: ", active)
+    
+              }
+             
+      
+            });
+    
+        },[])
+  
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        const onPickDelivery = () => {
+  
+          pick_delivery_request(rider?.id, currentDelivery?.id)
+        }
+        
+        const onDropDelivery = () => {
+            // const uniqueIDS = deliveries.filter(it => it.id !== currentDelivery?.id).map(it => it.id)
+            // console.log("uinque ids: ",uniqueIDS)
+            
+            
+           drop_delivery_request(rider?.id, currentDelivery?.id)
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        async function skip_task_request(myId: Number, taskId: Number) {
+          const function_name = "skip_task_request"
+          try{
+              await fetch('http://192.168.0.6:5000/skipNewTask', {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              //  body: JSON.stringify({
+              //   "name": "jae"
+              // }),
+               
+              body: JSON.stringify({
+                   "riderID": myId,
+                   "taskID": taskId
+               })
+        
+            })
+            .then((response) => response.json())
+            .then((responseJson) => {
+              
+              if(responseJson.empty) {
+                 
+              } else if(responseJson.success) {
+                  console.log(`responsejson: ${JSON.stringify(responseJson.success)}`)
+                  setNewTask({})
+              } else {
+                console.log(`responsejson: ${JSON.stringify(responseJson)}`)
+                setNewTask({})
+              }
+              // console.log(`here is the response: ${responseJson}`)
+            })
+        
+          } catch(error){
+              console.log(`error in ${function_name}, ${error}`)
+          } 
+          
+        }
+        
+        
+        
+        async function pick_delivery_request(myId: Number, taskId: Number,) {
+          const function_name = "pick_delivery_request"
+          try{
+              await fetch('http://192.168.0.6:5000/pickDelivery', {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              //  body: JSON.stringify({
+              //   "name": "jae"
+              // }),
+               
+              body: JSON.stringify({
+                   "riderID": myId,
+                   "taskID": taskId
+               })
+        
+            })
+            .then((response) => response.json())
+            .then((responseJson) => {
+              
+              if(responseJson.empty) {
+                 
+              } else if(responseJson.success) {
+                console.log(`responsejson: ${JSON.stringify(responseJson.success)}`)
+                fetch_deliveries_request(rider?.id)
+              }
+               else {
+                console.log(`responsejson: ${JSON.stringify(responseJson)}`)
+                setDeliveries(responseJson)
+                
+              }
+              // console.log(`here is the response: ${responseJson}`)
+            })
+        
+          } catch(error){
+              console.log(`error in ${function_name}, ${error}`)
+          } 
+          
+        }
+        
+        async function drop_delivery_request(myId: Number, taskId: Number) {
+          const function_name = "drop_delivery_request"
+          try{
+              await fetch('http://192.168.0.6:5000/dropDelivery', {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              //  body: JSON.stringify({
+              //   "name": "jae"
+              // }),
+               
+              body: JSON.stringify({
+                   "riderID": myId,
+                   "taskID": taskId,
+                  //  "taskArray": taskArray
+               })
+        
+            })
+            .then((response) => response.json())
+            .then((responseJson) => {
+              
+              if(responseJson.empty) {
+                 
+              } else if(responseJson.success) {
+                console.log(`responsejson: ${JSON.stringify(responseJson.success)}`)
+                setLastDelivery(currentDelivery)
+                // fetch_deliveries_request(rider?.id)
+              }
+               else {
+                // console.log(`responsejson: ${JSON.stringify(responseJson)}`)
+                // setDeliveries(responseJson)
+                // fetch_deliveries_request(rider?.id)
+                //TODO
+                console.log("new results need to be figured",responseJson)
+              }
+              // console.log(`here is the response: ${responseJson}`)
+            })
+        
+          } catch(error){
+              console.log(`error in ${function_name}, ${error}`)
+          } 
+          
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // async function fetch_payouts_request (myId: Number, ){
+
+    //   const function_name = "fetch_payouts_request"
+    //   try{
+    //     await fetch('http://192.168.0.6:5000/fetchPayouts', {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json"
+    //     },
+    //     //  body: JSON.stringify({
+    //     //   "name": "jae"
+    //     // }),
+         
+    //     body: JSON.stringify({
+    //          "riderID": myId,
+    //         //  "date": date
+    //      })
+    
+    //   })
+    //   .then((response) => response.json())
+    //   .then((responseJson) => {
+        
+    //     if(responseJson.empty) {
+           
+    //     } else {
+    //         console.log(`responsejson: ${JSON.stringify(responseJson[0])}`)
+    //         setPayouts(responseJson)
+    //         // console.log("responseJson.lastDelivery",responseJson.lastDelivery)
+    //     }
+    //     // console.log(`here is the response: ${responseJson}`)
+    //   })
+    
+    // } catch(error){
+    //     console.log(`error in ${function_name}: ${error}`)
+    // } 
+    
+    
+    // }
+
+
+
+
+
+
+
+
+    
+// was in working screen
+async function accept_task_request(myId: Number, taskId: Number) {
+  const function_name = "accept_task_request"
+  try{
+      await fetch('http://192.168.0.6:5000/acceptNewTask', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      //  body: JSON.stringify({
+      //   "name": "jae"
+      // }),
+       
+      body: JSON.stringify({
+           "riderID": myId,
+           "taskID": taskId
+       })
+
+    })
+    .then((response) => response.json())
+    .then((responseJson) => {
+      
+      if(responseJson.empty) {
+         
+      } else if(responseJson.success) {
+          console.log(`responsejson: ${JSON.stringify(responseJson.success)}`)
+          const task = newTask;
+          
+          setNewTask({})
+      } else {
+        console.log(`responsejson: ${JSON.stringify(responseJson)}`)
+        setNewTask({})
+      }
+      // console.log(`here is the response: ${responseJson}`)
+    })
+
+  } catch(error){
+      console.log(`error in ${function_name}, ${error}`)
+  } 
+  
+
+
+}
+
+        
+
+
+
+
+
+
+
+
+//was in working screen
+
+// async function fetch_deliveries_request (myId: Number){
+
+//   const function_name = "fetch_deliveries_request"
+//   console.log(function_name)
+//   try{
+//     await fetch('http://192.168.0.6:5000/fetchDeliveries', {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json"
+//     },
+//     //  body: JSON.stringify({
+//     //   "name": "jae"
+//     // }),
+     
+//     body: JSON.stringify({
+//          "riderID": myId,
+//          "riderTasks": rider?.activeTasks,
+//          "lastDelivery": rider?.lastDelivery
+//      })
+
+//   })
+//   .then((response) => response.json())
+//   .then((responseJson) => {
+    
+//     if(responseJson.empty) {
+       
+//     } else {
+//         // console.log(`responsejson: ${JSON.stringify(responseJson[0])}`)
+//         setDeliveries(responseJson.activeDeliveries ? responseJson.activeDeliveries : [])
+//         setLastDelivery(responseJson.lastDelivery ? responseJson.lastDelivery : [])
+//         // console.log("responseJson.lastDelivery",responseJson.lastDelivery)
+//     }
+//     // console.log(`here is the response: ${responseJson}`)
+//   })
+
+// } catch(error){
+//     console.log(`error in ${function_name}: ${error}`)
+// } 
+
+
+// }
+
+
+
+
+
+const {newTask, tasks} = useSelector(state=> state.riderReducer)
+
+
+ {/* //new task modal */}
+ <Modal
+ statusBarTranslucent
+ // style={{backgroundColor: "red"}}
+ animationType="fade"
+   transparent={false}
+   visible={newTask?.id ? true : false} 
+   
+   // onRequestClose={() => setModal(it => !it)}
+ >
+   <NewTaskScreen riderNewTask={newTask} acceptNewTask={() => acceptNewTask(newTask, tasks)} skipNewTask={() => skipNewTask(newTask, tasks)} />
+   
+   <StatusBar style={"light"}  backgroundColor={customStyles.primaryColor} />
+ </Modal>
+
+
+
+

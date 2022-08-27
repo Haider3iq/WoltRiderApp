@@ -1,0 +1,50 @@
+[
+    {
+    "name": "Pikku Qoutro",
+    "address": "Pitkäkatu 42",
+    "coords": {
+        "latitude": 63.09479733237235,
+        "longitude": 21.619730237518308
+    }
+
+   },
+   {
+    "name": "McDonald's",
+    "address": "McDonald's Klemetsö",
+    "coords": {
+        "latitude": 63.138236403761205,
+        "longitude": 21.639773584686072
+    }
+
+   },
+
+   {
+    "name": "Hesburger, keskusta",
+    "address": "Hesburger, Kauppapuistikko 11",
+    "coords": {
+        "latitude": 63.09937419771866,
+        "longitude": 21.615871808419993
+    }
+
+   },
+
+   {
+    "name": "Espresso House Espen",
+    "address": "Hovioikeudenpuistikko 16, 65100 Vaasa",
+    "coords": {
+        "latitude": 63.09710593904698,
+        "longitude": 21.617456501096203
+    }
+
+   },
+
+   {
+    "name": "Burger king",
+    "address": "Kivihaantie 16, 65300 Vaasa",
+    "coords": {
+        "latitude": 63.11364194576121,
+        "longitude": 21.65944314866114
+    }
+
+   }
+]

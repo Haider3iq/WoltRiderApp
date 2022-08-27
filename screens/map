@@ -1,0 +1,62 @@
+const { default: customStyles } = require("../AppTheme/customStyles");
+
+  <MapView
+           showsMyLocationButton={true}
+           ref={mapRef}
+           initialRegion={{
+            latitude: location.coords.latitude,
+            longitude: location.coords.longitude,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          }}
+
+
+          
+          //customMapStyle={darkMapStyle}
+          style={styles.map}
+          >
+          
+
+           {/* Customer's location mark */}
+        <Marker 
+        coordinate={otherLocation} 
+        title={locations.name !== "customer house" ? "Customer's location 🏠" : `${locations.name} 🍲`}
+        description={`${locations.address}`}
+        >
+
+          <View
+          style={[styles.locationIconLayout, {borderColor: "lightgreen"}]}
+          >
+            {
+             locations.name !== "customer house" ? <Image style={styles.locationIcon} source={customStyles.resturantPng} /> : <Image style={styles.locationIcon} source={customStyles.resturantPng} />
+            }
+          
+          </View>
+          
+        </Marker>
+            {/* My location mark */}
+        <Marker 
+        focusable
+        coordinate={myLocation} 
+        title={"Your location now 📍"}
+        description={`${locations.address}`}
+
+        >
+          <View
+          style={[styles.locationIconLayout, {borderColor: locationColor}]}
+          >
+             <Image style={styles.locationIcon} source={require("../assets/images/Courier.png")} />
+            
+          
+          </View>
+          
+        </Marker>
+
+
+         {/* <Polygon
+          coordinates={coordinates}
+          strokeColor="#000" // fallback for when `strokecustomStyles` is not supported by the map-provider
+          
+          strokeWidth={4}
+        />  */}
+      </MapView>
